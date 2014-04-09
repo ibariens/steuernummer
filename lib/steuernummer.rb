@@ -1,5 +1,5 @@
 require "steuernummer/version"
-require "steuernummer/table"
+require "steuernummer/tax_table"
 
 
 module Steuernummer
