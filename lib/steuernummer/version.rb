@@ -1,3 +1,3 @@
-module Steuernummer
+class Steuernummer
   VERSION = "0.0.1"
 end
