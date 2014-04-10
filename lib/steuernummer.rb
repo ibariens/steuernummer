@@ -78,7 +78,12 @@ class Steuernummer
     return nil if !is_valid?
     if get_number_type == :country
       {:number => @tax_string, :region => @tax_rules.first[:region]}
-    elsif (@tax_rules.count > 1) && (@provided_region != 'unknown')
+    elsif (@tax_rules.count > 1) && (@provided_region == 'unknown')
+      raise("Can't determine country wide number for a region wide
+             number without knowing the region.
+             Please pass one of the following as the second argument:
+             #{Steuernummer::TaxTable.tax_regions.join(', ')} ")
+    else
       tax_rule = get_tax_rule_on_region
 
       match_data = @tax_string.match tax_rule[:match_pattern_region]
@@ -88,11 +93,6 @@ class Steuernummer
       country_wide = tax_rule[:to_country_wide].call *arguments_array
 
       {:number => country_wide, :region => tax_rule[:region]}
-    else
-      raise("Can't determine country wide number for a region wide
-             number without knowing the region.
-             Please pass one of the following as the second argument:
-             #{Steuernummer::TaxTable.tax_regions.join(', ')} ")
     end
   end
 

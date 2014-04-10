@@ -26,13 +26,30 @@ class TestSteuernummer < Test::Unit::TestCase
   end
 
 
-  def test_wikipedia_examples
+  def test_region_number_entries
     @wiki_test_entries.each do |wiki_entry|
-      tax_number = Steuernummer.new(wiki_entry[1])
+      tax_number = Steuernummer.new(wiki_entry[1], wiki_entry[0])
 
       assert(tax_number.is_valid?, "#{wiki_entry[1]} should be marked as valid, but is marked as invalid")
-      assert_equal(wiki_entry[0], tax_number.region,            "Error in region: expected: #{wiki_entry[0]}, but got: #{tax_number.region}")
-      assert_equal(wiki_entry[2], tax_number.country_wide_code, "Error in country_wide_code: expected: #{wiki_entry[0]}, but got: #{tax_number.region}")
+      assert_equal(wiki_entry[0], tax_number.region_wide_number[:region], "Error in region: expected: #{wiki_entry[0]}, but got: #{tax_number.region_wide_number[:region]}")
+      assert_equal(wiki_entry[1], tax_number.region_wide_number[:number], "Error in number: expected: #{wiki_entry[1]}, but got: #{tax_number.region_wide_number[:number]}")
+
+      assert_equal(wiki_entry[0], tax_number.country_wide_number[:region], "Error in region: expected: #{wiki_entry[0]}, but got: #{tax_number.country_wide_number[:region]}")
+      assert_equal(wiki_entry[2], tax_number.country_wide_number[:number], "Error in number: expected: #{wiki_entry[2]}, but got: #{tax_number.country_wide_number[:number]}")
+    end
+  end
+
+
+  def test_country_number_entries
+    @wiki_test_entries.each do |wiki_entry|
+      tax_number = Steuernummer.new(wiki_entry[2], wiki_entry[0])
+
+      assert(tax_number.is_valid?, "#{wiki_entry[2]} should be marked as valid, but is marked as invalid")
+      assert_equal(wiki_entry[0], tax_number.region_wide_number[:region], "Error in region: expected: #{wiki_entry[0]}, but got: #{tax_number.region_wide_number[:region]}")
+      assert_equal(wiki_entry[1], tax_number.region_wide_number[:number], "Error in number: expected: #{wiki_entry[1]}, but got: #{tax_number.region_wide_number[:number]}")
+
+      assert_equal(wiki_entry[0], tax_number.country_wide_number[:region], "Error in region: expected: #{wiki_entry[0]}, but got: #{tax_number.country_wide_number[:region]}")
+      assert_equal(wiki_entry[2], tax_number.country_wide_number[:number], "Error in number: expected: #{wiki_entry[2]}, but got: #{tax_number.country_wide_number[:number]}")
     end
   end
 end
