@@ -23,31 +23,29 @@ Or install it yourself as:
 
 ## Usage
 
-  # Validate your German Steuernummer
-  #
-  # Example:
-  #   >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
-  #   >> tax_no.is_valid?
-  #   => true
-  #
-  #   >> tax_no.country_wide_number
-  #   => {:number => '2893081508152', :region => Baden-Württemberg')
-  #
-  #  ----------------------------------------------------------------
-  #
-  #   >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
-  #   >> tax_no.is_valid?
-  #   => true
-  #
-  #   >> tax_no.region_wide_number
-  #   => {:number => '93815/08152', :region => Baden-Württemberg')
-  #
-  #  ----------------------------------------------------------------
-  #
-  # Arguments:
-  #   steuernummer: (String)
-  #   region: (String)
-  #
+  Validate your German Steuernummer
+
+  Example:
+  >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
+  >> tax_no.is_valid?
+  >> => true
+
+  >> tax_no.country_wide_number
+  >> => {:number => '2893081508152', :region => Baden-Württemberg')
+
+   >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
+   >> tax_no.is_valid?
+   >>  => true
+
+
+  >> tax_no.region_wide_number
+  >>  => {:number => '93815/08152', :region => Baden-Württemberg')
+
+
+  Arguments:
+    steuernummer: (String)
+    region: (String)
+
 
 ## Contributing
 
