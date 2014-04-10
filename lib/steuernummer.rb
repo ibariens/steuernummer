@@ -7,18 +7,28 @@ class Steuernummer
   # Validate your German Steuernummer
   #
   # Example:
-  #   >> tax_no = Steuernummer.new("93815/08152")
+  #   >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
   #   >> tax_no.is_valid?
   #   => true
   #
-  #   >> tax_no.region
-  #   => 'Baden-Württemberg'
+  #   >> tax_no.country_wide_number
+  #   => {:number => '2893081508152', :region => Baden-Württemberg')
   #
-  #   >> tax_no.country_wide_code
-  #   => 2893081508152
+  #  ----------------------------------------------------------------
+  #
+  #   >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
+  #   >> tax_no.is_valid?
+  #   => true
+  #
+  #   >> tax_no.region_wide_number
+  #   => {:number => '93815/08152', :region => Baden-Württemberg')
+  #
+  #  ----------------------------------------------------------------
   #
   # Arguments:
-  #   Steuernummer: (String)
+  #   steuernummer: (String)
+  #   region: (String)
+  #
 
 
   def initialize(tax_string, region = 'unknown')
