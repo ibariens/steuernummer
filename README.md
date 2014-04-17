@@ -25,8 +25,8 @@ Or install it yourself as:
 
 ``` ruby
   # Arguments:
-  #    steuernummer: (String)
-  #    region: (String) # 'unknown' or one of Steuernummer.valid_regions
+  #    steuernummer: (String) -- regional or countrywide number
+  #    region:       (String) -- 'unknown' or one of Steuernummer.valid_regions
 
 
 
