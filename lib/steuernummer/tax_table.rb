@@ -5,11 +5,6 @@ class Steuernummer::TaxTable
   # All values are based on: http://de.wikipedia.org/wiki/Steuernummer
   # To keep it a bit readible the variable names are kept the same as
   # in the wikipedia entry.
-    def self.tax_regions
-      Steuernummer::TaxTable.tax_rules.map {|x| x[:region]}
-    end
-
-
     def self.tax_rules
       [{:region => 'Baden-Württemberg',
         :match_pattern_region => /(?<ff>\d{2})(?<bbb>\d{3})[\/](?<uuuu>\d{4})(?<p>\d{1})/,

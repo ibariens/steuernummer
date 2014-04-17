@@ -25,6 +25,16 @@ class Steuernummer
   #
   #  ----------------------------------------------------------------
   #
+  #  >> tax_no = Steuernummer.new('151/815/08156','unknown')
+  #  >> tax_no.is_valid?
+  #  => true
+  #
+  #  >> tax_no.region_wide_number
+  #  => {:number => '151/815/08156', :region => 'unknown'}
+  #
+  #  >> tax_no.country_wide_number
+  #  => RuntimeError: Can't determine country wide number for a region wide number without knowing the region....
+  #
   # Arguments:
   #   steuernummer: (String)
   #   region: (String)
@@ -32,9 +42,11 @@ class Steuernummer
 
 
   def initialize(tax_string, region = 'unknown')
-    raise("Please use a String as argument") if tax_string.class != String
-    unless region == 'unknown' || (Steuernummer::TaxTable.tax_regions.include? region)
-      raise("unknown region, please use one of the following #{Steuernummer::TaxTable.tax_regions.join(', ')}")
+    if tax_string.class != String
+      raise("Please use a String as argument")
+    end
+    if !(region == 'unknown') || (Steuernummer.valid_regions.include? region)
+      raise("unknown region, please use 'unknown' or one of the entries you can get from Steuernummer.valid_regions}")
     end
 
     @tax_string          = tax_string
@@ -79,10 +91,8 @@ class Steuernummer
     if get_number_type == :country
       {:number => @tax_string, :region => @tax_rules.first[:region]}
     elsif (@tax_rules.count > 1) && (@provided_region == 'unknown')
-      raise("Can't determine country wide number for a region wide
-             number without knowing the region.
-             Please pass one of the following as the second argument:
-             #{Steuernummer::TaxTable.tax_regions.join(', ')} ")
+      raise("Can't determine country wide number for a region wide number without knowing the region.
+             Please use only entries you can get from Steuernummer.valid_regions")
     else
       tax_rule = get_tax_rule_on_region
 
@@ -123,5 +133,10 @@ class Steuernummer
     else
       @tax_rules.first
     end
+  end
+
+
+  def self.valid_regions
+    Steuernummer::TaxTable.tax_rules.map {|x| x[:region]}
   end
 end

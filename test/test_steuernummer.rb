@@ -52,6 +52,28 @@ class TestSteuernummer < Test::Unit::TestCase
       assert_equal(wiki_entry[2], tax_number.country_wide_number[:number], "Error in number: expected: #{wiki_entry[2]}, but got: #{tax_number.country_wide_number[:number]}")
     end
   end
+
+  def test_faulty_region_number_entries
+    # number to long
+    assert_equal(false, (Steuernummer.new('93815/08152333','Baden-Württemberg').is_valid?))
+  end
+
+  def test_needs_region
+    e = assert_raise RuntimeError do
+      Steuernummer.new('151/815/08156','unknown').country_wide_number
+    end
+    assert e.message.include? "Can't determine country wide number"
+  end
+
+  def test_faulty_country_number_entries
+    # number to long
+    assert_equal(false, (Steuernummer.new('28930815081522342323','Baden-Württemberg').is_valid?))
+  end
+
+
+  def test_should_return_array_with_possible_regions
+    assert_equal(16, Steuernummer.valid_regions.count)
+  end
 end
 
 
