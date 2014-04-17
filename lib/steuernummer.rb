@@ -36,10 +36,12 @@ class Steuernummer
   #  >> tax_no.country_wide_number
   #  => RuntimeError: Can't determine country wide number for a region wide number without knowing the region....
   #
+  #  >> Steuernummer.valid_regions
+  #  => ["Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",....]
+  #
   # Arguments:
   #   steuernummer: (String)
   #   region: (String)
-  #
 
 
   def initialize(tax_string, region = 'unknown')
