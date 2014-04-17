@@ -23,26 +23,45 @@ Or install it yourself as:
 
   Validate your German Steuernummer
 
-  Example:
-  >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
-  >> tax_no.is_valid?
-  >> => true
-
-  >> tax_no.country_wide_number
-  >> => {:number => '2893081508152', :region => Baden-Württemberg')
-
+``` ruby
+   Example:
+   >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
+   >> tax_no.is_valid?
+   => true
+  
+   >> tax_no.country_wide_number
+   => {:number => '2893081508152', :region => 'Baden-Württemberg')
+  
+  # ----------------------------------------------------------------
+  
    >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
    >> tax_no.is_valid?
-   >>  => true
+   => true
+  
+   >> tax_no.region_wide_number
+   => {:number => '93815/08152', :region => 'Baden-Württemberg')
+  
+  #  ----------------------------------------------------------------
 
+  >> tax_no = Steuernummer.new('151/815/08156','unknown')
+  >> tax_no.is_valid?
+  => true
 
   >> tax_no.region_wide_number
-  >>  => {:number => '93815/08152', :region => Baden-Württemberg')
+  => {:number => '151/815/08156', :region => 'unknown'}
+ 
+  >> tax_no.country_wide_number
+  => RuntimeError: "Can't determine country wide number for a region wide number without knowing the region...."
+  
+  
+  #  ----------------------------------------------------------------
+ 
+  >> Steuernummer.valid_regions
+  => ["Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",....]
 
-
-  Arguments:
-    steuernummer: (String)
-    region: (String)
+  # Arguments:
+      steuernummer: (String)
+      region: (String)
 
 
 ## Contributing
