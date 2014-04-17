@@ -24,6 +24,12 @@ Or install it yourself as:
   Validate your German Steuernummer
 
 ``` ruby
+  # Arguments:
+  #    steuernummer: (String)
+  #    region: (String) # 'unknown' or one of Steuernummer.valid_regions
+
+
+
    Example:
    >> tax_no = Steuernummer.new("93815/08152", 'Baden-Württemberg')
    >> tax_no.is_valid?
@@ -59,11 +65,9 @@ Or install it yourself as:
   >> Steuernummer.valid_regions
   => ["Baden-Württemberg", "Bayern", "Berlin", "Brandenburg",....]
 
-  # Arguments:
-      steuernummer: (String)
-      region: (String)
 
 
+```
 ## Contributing
 
 1. Fork it
