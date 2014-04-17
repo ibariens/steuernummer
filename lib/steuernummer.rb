@@ -4,6 +4,7 @@ require "steuernummer/tax_table"
 
 
 class Steuernummer
+
   # Validate your German Steuernummer
   #
   # Example:
@@ -45,7 +46,7 @@ class Steuernummer
     if tax_string.class != String
       raise("Please use a String as argument")
     end
-    if !(region == 'unknown') || (Steuernummer.valid_regions.include? region)
+    unless (region == 'unknown') || (Steuernummer.valid_regions.include? region)
       raise("unknown region, please use 'unknown' or one of the entries you can get from Steuernummer.valid_regions}")
     end
 
@@ -54,34 +55,12 @@ class Steuernummer
     @tax_rules           = get_tax_rules(tax_string)
   end
 
-  def get_tax_rules(tax_string)
-    tax_rules = Array.new
-    Steuernummer::TaxTable.tax_rules.each do |tax_rule|
-      if tax_string =~ tax_rule[:match_pattern_region]
-        tax_rules << tax_rule.merge(:type => :region)
-      elsif tax_string =~ tax_rule[:match_pattern_country]
-        tax_rules << tax_rule.merge(:type => :country)
-      end
-    end
-    tax_rules
-  end
-
   def is_valid?
     if @provided_region != 'unknown'
       regions = @tax_rules.map {|x| x[:region]}
       regions.include? @provided_region
     else
       !@tax_rules.empty?
-    end
-  end
-
-  def get_number_type
-    # returns :country or :region
-    tax_rule = @tax_rules.uniq{|x| x[:type]}
-    if tax_rule.count > 1
-      raise("both country and region type found, should be impossible!")
-    else
-      tax_rule.first[:type]
     end
   end
 
@@ -125,6 +104,30 @@ class Steuernummer
     end
   end
 
+  def self.valid_regions
+    Steuernummer::TaxTable.tax_rules.map {|x| x[:region]}
+  end
+
+
+
+
+
+  # ----------------------------------------------------------------
+  # private functions
+  # ----------------------------------------------------------------
+  private
+
+
+  def get_number_type
+    # returns :country or :region
+    tax_rule = @tax_rules.uniq{|x| x[:type]}
+    if tax_rule.count > 1
+      raise("both country and region type found, should be impossible!")
+    else
+      tax_rule.first[:type]
+    end
+  end
+
   def get_tax_rule_on_region
     if @tax_rules.count > 1
       possible_regions = @tax_rules.map {|x| x[:region]}
@@ -136,7 +139,15 @@ class Steuernummer
   end
 
 
-  def self.valid_regions
-    Steuernummer::TaxTable.tax_rules.map {|x| x[:region]}
+  def get_tax_rules(tax_string)
+    tax_rules = Array.new
+    Steuernummer::TaxTable.tax_rules.each do |tax_rule|
+      if tax_string =~ tax_rule[:match_pattern_region]
+        tax_rules << tax_rule.merge(:type => :region)
+      elsif tax_string =~ tax_rule[:match_pattern_country]
+        tax_rules << tax_rule.merge(:type => :country)
+      end
+    end
+    tax_rules
   end
 end
