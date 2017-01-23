@@ -91,9 +91,9 @@ class Steuernummer::TaxTable
         :to_country_wide => lambda {|ff,bbb,uuuu,p| "31#{ff}0#{bbb}#{uuuu}#{p}"}},
 
        {:region => 'Schleswig-Holstein',
-        :match_pattern_region => /\A(?<ff>\d{2})\s(?<bbb>\d{3})\s(?<uuuu>\d{4})(?<p>\d{1})\z/,
+        :match_pattern_region =>  /\A(?<ff>\d{2})[\/](?<bbb>\d{3})[\/](?<uuuu>\d{4})(?<p>\d{1})\z/,
         :match_pattern_country => /\A21(?<ff>\d{2})0(?<bbb>\d{3})(?<uuuu>\d{4})(?<p>\d{1})\z/ ,
-        :to_region_wide => lambda {|ff,bbb,uuuu,p| "#{ff} #{bbb} #{uuuu}#{p}"},
+        :to_region_wide => lambda {|ff,bbb,uuuu,p| "#{ff}/#{bbb}/#{uuuu}#{p}"},
         :to_country_wide => lambda {|ff,bbb,uuuu,p| "21#{ff}0#{bbb}#{uuuu}#{p}"}},
 
        {:region => 'Thüringen',

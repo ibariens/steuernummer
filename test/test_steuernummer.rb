@@ -20,7 +20,7 @@ class TestSteuernummer < Test::Unit::TestCase
       ['Saarland', '010/815/08182', '1010081508182'],
       ['Sachsen', '201/123/12340', '3201012312340'],
       ['Sachsen-Anhalt', '101/815/08154', '3101081508154'],
-      ['Schleswig-Holstein', '29 815 08158', '2129081508158'],
+      ['Schleswig-Holstein', '29/815/08158', '2129081508158'],
       ['Thüringen', '151/815/08156', '4151081508156']
     ]
   end
