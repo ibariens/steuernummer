@@ -16,7 +16,7 @@ class TestSteuernummer < Test::Unit::TestCase
       ['Mecklenburg-Vorpommern', '079/815/08151', '4079081508151'],
       ['Niedersachsen', '24/815/08151', '2324081508151'],
       ['Nordrhein-Westfalen', '133/8150/8159', '5133081508159'],
-      ['Rheinland-Pfalz', '22/815/0815/4', '2722081508154'],
+      ['Rheinland-Pfalz', '22/815/08154', '2722081508154'],
       ['Saarland', '010/815/08182', '1010081508182'],
       ['Sachsen', '201/123/12340', '3201012312340'],
       ['Sachsen-Anhalt', '101/815/08154', '3101081508154'],
