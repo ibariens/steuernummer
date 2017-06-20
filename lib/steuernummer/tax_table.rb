@@ -67,7 +67,7 @@ class Steuernummer::TaxTable
         :to_country_wide => lambda {|fff,bbbb,uuu,p| "5#{fff}0#{bbbb}#{uuu}#{p}"}},
 
        {:region => 'Rheinland-Pfalz',
-        :match_pattern_region => /\A(?<ff>\d{2})[\/](?<bbb>\d{3})[\/](?<uuuu>\d{4})[\/](?<p>\d{1})\z/,
+        :match_pattern_region => /\A(?<ff>\d{2})[\/](?<bbb>\d{3})[\/](?<uuuu>\d{4})(?<p>\d{1})\z/,
         :match_pattern_country => /\A27(?<ff>\d{2})0(?<bbb>\d{3})(?<uuuu>\d{4})(?<p>\d{1})\z/,
         :to_region_wide => lambda {|ff,bbb,uuuu,p| "#{ff}/#{bbb}/#{uuuu}/#{p}"},
         :to_country_wide => lambda {|ff,bbb,uuuu,p| "27#{ff}0#{bbb}#{uuuu}#{p}"}},
