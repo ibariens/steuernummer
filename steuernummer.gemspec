@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "steuernummer"
   spec.version       = Steuernummer::VERSION
   spec.authors       = ["Bart Ariens"]
-  spec.email         = ["bart.ariens@divimove.com"]
+  spec.email         = ["prive@ibariens.nl"]
   spec.description   = %q{Validates with regex the German Steuernummer and allows to return the region (Bundesland) and/or unified region number (Vereinheitlictes Bundesschema)}
   spec.summary       = %q{Simple regex validator for German Steuernummer}
   spec.homepage      = ""
@@ -19,5 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", '~> 0'
+  spec.add_development_dependency "test-unit", '~> 0'
 end
