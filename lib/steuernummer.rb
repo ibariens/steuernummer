@@ -17,7 +17,7 @@ class Steuernummer
   #
   #  ----------------------------------------------------------------
   #
-  #   >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
+  #   >> tax_no = Steuernummer.new("2893081508152")
   #   >> tax_no.is_valid?
   #   => true
   #

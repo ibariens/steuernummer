@@ -19,6 +19,15 @@ Or install it yourself as:
 
     $ gem install steuernummer
 
+## Development    
+
+Test with:
+    $ rake test
+
+Load directly in IRB with:
+    $ irb -I lib
+    $ require 'steuernummer'    
+
 ## Usage
 
   Validate your German Steuernummer
@@ -40,7 +49,7 @@ Or install it yourself as:
   
   # ----------------------------------------------------------------
   
-   >> tax_no = Steuernummer.new("28FF0BBBUUUUP")
+   >> tax_no = Steuernummer.new("2893081508152")
    >> tax_no.is_valid?
    => true
   
