@@ -4,7 +4,7 @@ require 'steuernummer'
 
 class TestSteuernummer < Test::Unit::TestCase
   def setup
-    # Examples taken from: http://de.wikipedia.org/wiki/Steuernummer
+    # Examples taken from: https://de.wikipedia.org/wiki/Steuernummer
     @wiki_test_entries = [
       ['Baden-Württemberg', '93815/08152', '2893081508152'],
       ['Bayern', '181/815/08155', '9181081508155'],

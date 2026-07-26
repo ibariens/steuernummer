@@ -2,7 +2,7 @@
 
 class Steuernummer::TaxTable
   # Puts all possible German tax regions in an data object.
-  # All values are based on: http://de.wikipedia.org/wiki/Steuernummer
+  # All values are based on: https://de.wikipedia.org/wiki/Steuernummer
   # To keep it a bit readible the variable names are kept the same as
   # in the wikipedia entry.
   def self.tax_rules

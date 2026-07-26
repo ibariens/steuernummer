@@ -2,7 +2,7 @@
 
 Steuernummer is a very simple Gem that uses regex to validate all german tax numbers (or steuernummer).
 It is able to generate a country wide code, and find the region where the steuernummer comes from.
-Data is based on: http://de.wikipedia.org/wiki/Steuernummer
+Data is based on: https://de.wikipedia.org/wiki/Steuernummer
 
 
 ## Installation
